@@ -8,6 +8,9 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use App\Models\Task;
+use Illuminate\Support\Facades\Log;
+
 
 class addTask implements ShouldQueue
 {
@@ -20,7 +23,7 @@ class addTask implements ShouldQueue
      */
     public function __construct()
     {
-        //
+        Log::info('add task __construct');
     }
 
     /**
@@ -30,6 +33,10 @@ class addTask implements ShouldQueue
      */
     public function handle()
     {
-        //
+        Log::info('add task handle');
+
+        $newTask = new Task();
+        $newTask->note = "add task queue";
+        $newTask->save();
     }
 }

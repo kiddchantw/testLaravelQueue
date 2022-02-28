@@ -20,6 +20,13 @@ class Controller extends BaseController
     public function doDispatch(Request $request)
     {
         Log::info("doDispatch");
+        
+        $newTask = new Task();
+        $newTask->note = "add task doDispatch";
+        $newTask->save();
+
+
+
         $newJob = new addTask();
         dispatch($newJob);
     }
