@@ -21,13 +21,12 @@ class Controller extends BaseController
     {
         Log::info("doDispatch");
         
-        $newTask = new Task();
-        $newTask->note = "add task doDispatch";
-        $newTask->save();
+        // $newTask = new Task();
+        // $newTask->note = "add task doDispatch";
+        // $newTask->save();
 
+        dispatch(new addTask("test123"));
+        dispatch(new addTask("test456"))->delay(2);
 
-
-        $newJob = new addTask();
-        dispatch($newJob);
     }
 }

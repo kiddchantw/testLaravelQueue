@@ -16,14 +16,19 @@ class addTask implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
+    
+    protected $inputString;
+
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(String $inputString)
     {
         Log::info('add task __construct');
+        $this->inputString = $inputString;
+
     }
 
     /**
@@ -33,10 +38,12 @@ class addTask implements ShouldQueue
      */
     public function handle()
     {
+        
         Log::info('add task handle');
 
         $newTask = new Task();
-        $newTask->note = "add task queue";
+        $input = ($this->inputString) ? $this->inputString  :null;
+        $newTask->note = "add task queue $input";
         $newTask->save();
     }
 }
